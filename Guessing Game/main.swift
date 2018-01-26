@@ -12,26 +12,39 @@ import Foundation
 var randomNumber = Int(arc4random_uniform(100))
 var guess: Int?
 var tries = 1
-var playAgain = "Y"
+var playAgain: String? = "Y"
+var name: String
 
-while playAgain == "Y"{
+
+
+
+while playAgain == "Y" || playAgain == "y" {
 
     print("Please guess a number between 1 and 100. You have 5 guesses.")
-    guess = Int(readLine()!)!
 
+    
+    while guess == nil {
+      print("Use a number please")
+        guess = Int(readLine()!)
+    }
 while guess! != randomNumber && tries < 5{
-if randomNumber > guess! {
-    print("The number was higher")
-}
-else if randomNumber < guess! {
+    
+    
+    if randomNumber > guess! {
+        print("The number was higher")
+    }
+    else if randomNumber < guess! {
 
-    print("The number was lower")
+        print("The number was lower")
     }
 
-    print("Please guess again")
-
-    guess = Int(readLine()!)!
-
+        print("Please guess again")
+guess = Int(readLine()!)
+    
+    while guess == nil {
+print("Please use a number")
+        guess = Int(readLine()!)
+    }
     tries += 1
     }
 if randomNumber == guess! {
@@ -44,7 +57,7 @@ print("The actual number was \(randomNumber)")
     randomNumber = Int(arc4random_uniform(100))
     tries = 1
     print("Would you like to play again? Y/N")
-    playAgain = readLine()!
+    playAgain = String(readLine()!)
     guess = Int(EMPTY)
     
 
